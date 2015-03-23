@@ -38,6 +38,10 @@ ol, ul
 input, textarea, select
   font-size inherit
 
+input, textarea
+  padding 5px
+  width 95%
+
 a:hover,a:active,a:focus
   outline 0
 
@@ -72,6 +76,8 @@ a:hover,a:active,a:focus
       margin 15px 0
       &.fa-times
         display none
+    .panes
+      display none
   &.expanded
     width 30%
     max-width 350px
@@ -359,10 +365,10 @@ button:hover .icon
         background #00498f url("img/ui-bg_dots-small_40_00498f_2x2.png") 50% 50% repeat
 
 #library, #playlists
-  overflow-y auto
-
-  user-select none
   cursor default
+  margin-top 8px
+  overflow-y auto
+  user-select none
 
   div.icon
     float left
@@ -394,10 +400,6 @@ button:hover .icon
 
     div.cursor
       text-decoration underline
-
-#lib-filter
-  margin 4px
-  width 175px
 
 #user-id
   cursor pointer
@@ -505,10 +507,6 @@ button:hover .icon
 
 #upload-widget
   padding 10px
-
-#upload-by-url, #import-by-name
-  padding 5px
-  width 95%
 
 #shortcuts
   h1
