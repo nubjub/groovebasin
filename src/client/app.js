@@ -2444,6 +2444,58 @@ function setUpGenericUi() {
   addToPlaylistFilter.addEventListener('paste', updateAddToPlaylistDialogDisplay, false);
   addToPlaylistNew.addEventListener('mousedown', onAddToPlaylistNewClick, false);
   addToPlaylistList.addEventListener('mousedown', onAddToPlaylistListClick, false);
+  document.getElementById('sb-library').addEventListener('click', onSmallButtonLibrary, false);
+  document.getElementById('sb-import').addEventListener('click', onSmallButtonImport, false);
+  document.getElementById('sb-playlists').addEventListener('click', onSmallButtonPlaylists, false);
+  document.getElementById('sb-chat').addEventListener('click', onSmallButtonChat, false);
+  document.getElementById('sb-settings').addEventListener('click', onSmallButtonSettings, false);
+  document.getElementById('sb-close').addEventListener('click', onSmallButtonClose, false);
+}
+
+function onSmallButtonLibrary(ev) {
+  ev.stopPropagation();
+  ev.preventDefault();
+  expandSidePane();
+}
+
+function onSmallButtonImport(ev) {
+  ev.stopPropagation();
+  ev.preventDefault();
+  expandSidePane();
+}
+
+function onSmallButtonPlaylists(ev) {
+  ev.stopPropagation();
+  ev.preventDefault();
+  expandSidePane();
+}
+
+function onSmallButtonChat(ev) {
+  ev.stopPropagation();
+  ev.preventDefault();
+  expandSidePane();
+}
+
+function onSmallButtonSettings(ev) {
+  ev.stopPropagation();
+  ev.preventDefault();
+  expandSidePane();
+}
+
+function onSmallButtonClose(ev) {
+  ev.stopPropagation();
+  ev.preventDefault();
+  condenseSidePane();
+}
+
+function expandSidePane() {
+  var sidePane = document.getElementById('sidepane');
+  sidePane.className = 'expanded';
+}
+
+function condenseSidePane() {
+  var sidePane = document.getElementById('sidepane');
+  sidePane.className = 'condensed';
 }
 
 function onAddToPlaylistListClick(ev) {
@@ -4332,3 +4384,5 @@ function popDialog(dom, title, width, height) {
     closeOpenDialog = noop;
   };
 }
+
+
