@@ -619,7 +619,7 @@ var streamBtnDom = document.getElementById('stream-btn');
 var streamBtnLabel = document.getElementById('stream-btn-label');
 var clientVolDom = document.getElementById('client-vol');
 var queueWindowDom = document.getElementById('queue-window');
-var leftWindowDom = document.getElementById('left-window');
+// var leftWindowDom = document.getElementById('left-window');
 var queueItemsDom = document.getElementById('queue-items');
 var autoDjDom = document.getElementById('auto-dj');
 var queueBtnRepeatDom = document.getElementById('queue-btn-repeat');
@@ -1954,7 +1954,7 @@ function renderNowPlaying() {
 function render() {
   var hideMainErr = (loadStatus === LoadStatus.GoodToGo);
   queueWindowDom.style.display= hideMainErr ? "" : "none";
-  leftWindowDom.style.display = hideMainErr ? "" : "none";
+  // leftWindowDom.style.display = hideMainErr ? "" : "none";
   nowPlayingDom.style.display = hideMainErr ? "" : "none";
   mainErrMsgDom.style.display = hideMainErr ? "none" : "";
   if (!hideMainErr) {
@@ -3012,38 +3012,38 @@ function onVolSliderMouseUp(ev) {
   userIsVolumeSliding = false;
 }
 
-function clickTab(tab) {
-  unselectTabs();
-  tab.tab.classList.add('active');
-  tab.pane.style.display = "";
-  activeTab = tab;
-  triggerResize();
-  if (tab === tabs.events) {
-    player.markAllEventsSeen();
-    renderUnseenChatCount();
-  }
-}
+// function clickTab(tab) {
+//   unselectTabs();
+//   tab.tab.classList.add('active');
+//   tab.pane.style.display = "";
+//   activeTab = tab;
+//   triggerResize();
+//   if (tab === tabs.events) {
+//     player.markAllEventsSeen();
+//     renderUnseenChatCount();
+//   }
+// }
 
-function setUpTabListener(tab) {
-  tab.tab.addEventListener('click', function(ev) {
-    clickTab(tab);
-  }, false);
-}
+// function setUpTabListener(tab) {
+//   tab.tab.addEventListener('click', function(ev) {
+//     clickTab(tab);
+//   }, false);
+// }
 
-function setUpTabsUi() {
-  for (var name in tabs) {
-    var tab = tabs[name];
-    setUpTabListener(tab);
-  }
-}
+// function setUpTabsUi() {
+//   for (var name in tabs) {
+//     var tab = tabs[name];
+//     setUpTabListener(tab);
+//   }
+// }
 
-function unselectTabs() {
-  for (var name in tabs) {
-    var tab = tabs[name];
-    tab.tab.classList.remove('active');
-    tab.pane.style.display = "none";
-  }
-}
+// function unselectTabs() {
+//   for (var name in tabs) {
+//     var tab = tabs[name];
+//     tab.tab.classList.remove('active');
+//     tab.pane.style.display = "none";
+//   }
+// }
 
 function uploadFiles(files) {
   if (files.length === 0) return;
@@ -3499,7 +3499,8 @@ function clearChatInputValue() {
 function renderUnseenChatCount() {
   var eventsTabText = (player.unseenChatCount > 0) ?
     ("Chat (" + player.unseenChatCount + ")") : "Chat";
-  tabs.events.tab.textContent = eventsTabText;
+  // TODO (mel): make this work with new panes (3)
+  // tabs.events.tab.textContent = eventsTabText;
   updateTitle();
 }
 
@@ -3518,7 +3519,6 @@ function renderImportProgress() {
 
   var importTabText = (player.importProgressList.length > 0) ?
     ("Import (" + player.importProgressList.length + ")") : "Import";
-  tabs.upload.tab.textContent = importTabText;
 
   // add the missing dom entries
   var i, ev;
@@ -3986,7 +3986,7 @@ function setUpUi() {
   setUpPlaylistsUi();
   setUpLibraryUi();
   setUpNowPlayingUi();
-  setUpTabsUi();
+  // setUpTabsUi();
   setUpUploadUi();
   setUpSettingsUi();
   setUpEditTagsUi();
@@ -4032,21 +4032,21 @@ function resizeDomElements() {
 
   nowPlayingDom.style.width = (window.innerWidth - MARGIN * 2) + "px";
   var secondLayerTop = nowPlayingDom.getBoundingClientRect().top + nowPlayingDom.clientHeight + MARGIN;
-  leftWindowDom.style.left = MARGIN + "px";
-  leftWindowDom.style.top = secondLayerTop + "px";
-  var queueWindowLeft = MARGIN + leftWindowDom.clientWidth + MARGIN;
-  queueWindowDom.style.left = queueWindowLeft + "px";
+  // leftWindowDom.style.left = MARGIN + "px";
+  // leftWindowDom.style.top = secondLayerTop + "px";
+  // var queueWindowLeft = MARGIN + leftWindowDom.clientWidth + MARGIN;
+  // queueWindowDom.style.left = queueWindowLeft + "px";
   queueWindowDom.style.top = secondLayerTop + "px";
-  queueWindowDom.style.width = (window.innerWidth - queueWindowLeft - MARGIN) + "px";
-  leftWindowDom.style.height = (window.innerHeight - secondLayerTop) + "px";
-  queueWindowDom.style.height = (leftWindowDom.clientHeight - MARGIN) + "px";
-  var tabContentsHeight = leftWindowDom.clientHeight - tabsDom.clientHeight - MARGIN;
-  libraryDom.style.height = (tabContentsHeight - libHeaderDom.clientHeight) + "px";
-  uploadDom.style.height = tabContentsHeight + "px";
-  eventsListDom.style.height = (tabContentsHeight - eventsOnlineUsersDom.clientHeight - chatBoxDom.clientHeight) + "px";
-  playlistsDom.style.height = (tabContentsHeight - newPlaylistNameDom.offsetHeight) + "px";
+  // queueWindowDom.style.width = (window.innerWidth - queueWindowLeft - MARGIN) + "px";
+  // leftWindowDom.style.height = (window.innerHeight - secondLayerTop) + "px";
+  // queueWindowDom.style.height = (leftWindowDom.clientHeight - MARGIN) + "px";
+  // var tabContentsHeight = leftWindowDom.clientHeight - tabsDom.clientHeight - MARGIN;
+  // libraryDom.style.height = (tabContentsHeight - libHeaderDom.clientHeight) + "px";
+  // uploadDom.style.height = tabContentsHeight + "px";
+  // eventsListDom.style.height = (tabContentsHeight - eventsOnlineUsersDom.clientHeight - chatBoxDom.clientHeight) + "px";
+  // playlistsDom.style.height = (tabContentsHeight - newPlaylistNameDom.offsetHeight) + "px";
 
-  setAllTabsHeight(tabContentsHeight);
+  // setAllTabsHeight(tabContentsHeight);
   queueItemsDom.style.height = (queueWindowDom.clientHeight - queueHeaderDom.offsetTop - queueHeaderDom.clientHeight) + "px";
 
   if (eventsListScrolledToBottom) {
@@ -4058,12 +4058,12 @@ function refreshPage() {
   location.href = location.protocol + "//" + location.host + "/";
 }
 
-function setAllTabsHeight(h) {
-  for (var name in tabs) {
-    var tab = tabs[name];
-    tab.pane.style.height = h + "px";
-  }
-}
+// function setAllTabsHeight(h) {
+//   for (var name in tabs) {
+//     var tab = tabs[name];
+//     tab.pane.style.height = h + "px";
+//   }
+// }
 
 function getStreamerCount() {
   var count = player.streamers;
@@ -4253,9 +4253,10 @@ function init() {
     labelQueueItems();
   });
   player.on('events', function() {
-    if (activeTab === tabs.events && isBrowserTabActive) {
-      player.markAllEventsSeen();
-    }
+    // TODO (mel): make this work with new panes
+    // if (activeTab === tabs.events && isBrowserTabActive) {
+    //   player.markAllEventsSeen();
+    // }
     renderEvents();
   });
   player.on('currentTrack', updateStreamPlayer);
@@ -4277,10 +4278,11 @@ function init() {
 
 function onWindowFocus() {
   isBrowserTabActive = true;
-  if (activeTab === tabs.events) {
-    player.markAllEventsSeen();
-    renderUnseenChatCount();
-  }
+  // TODO (mel): make this work with new panes (2)
+  // if (activeTab === tabs.events) {
+  //   player.markAllEventsSeen();
+  //   renderUnseenChatCount();
+  // }
 }
 
 function onWindowBlur() {

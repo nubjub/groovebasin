@@ -43,24 +43,34 @@
       </div>
       <div id="upload-pane" class="widget" style="display: none">
         <div id="upload">
-          <h1>Import by URL</h1>
-          <input id="upload-by-url" type="text" placeholder="Paste URL and press enter. Supports YouTube">
+          <input id="upload-by-url" type="text" placeholder="Import music by URL">
+          <p class="hint">
+            Paste URL and press enter. Supports YouTube.
+          </p>
+          <hr />
+          <textarea id="import-by-name" placeholder="Import by name"></textarea>
+          <p class="hint" style="position: relative; top: -3px;">
+            Put a list of artist - title track names here, newline delimited. Enter when done. Shift+Enter for newline.
+          </p>
+          <hr />
           <h1>Upload Files</h1>
           <div id="upload-widget">
             <input type="file" id="upload-input" multiple="multiple" placeholder="Drag and drop or click to browse">
           </div>
-          <h1>Import by Name</h1>
-          <textarea id="import-by-name" placeholder="Put a list of artist - title track names here, newline delimited. Enter when done. Shift+Enter for newline."></textarea>
-          <h1>Options</h1>
-          <div>
-            Automatically queue imported songs: <input class="button" type="button" id="auto-queue-uploads" value="On">
-          </div>
+          <p class="hint">
+            Upload music files from your computer.
+          </p>
           <div id="import-progress" style="display: none">
+            <hr />
             <h1>Ongoing Imports</h1>
             <div>
               <ul id="import-progress-list">
               </ul>
             </div>
+          </div>
+          <hr />
+          <div>
+            Automatically queue: <input class="button" type="button" id="auto-queue-uploads" value="On">
           </div>
         </div>
       </div>
