@@ -17,37 +17,7 @@
       <i id="sb-settings" class="fa fa-cog"></i>
       <i id="sb-close" class="fa fa-times"></i>
     </div>
-  </div>
-  <div id="mainpane">
-    <div id="nowplaying" class="widget" style="display: none">
-      <div class="playback-btns">
-        <button class="button" id="nowplaying-prev" tabindex="-1"><label class="icon icon-seek-prev" for="nowplaying-prev"></label></button>
-        <button class="button" id="nowplaying-toggle" tabindex="-1"><label id="nowplaying-toggle-icon" class="icon icon-pause" for="nowplaying-toggle-icon"></label></button>
-        <button class="button" id="nowplaying-stop" tabindex="-1"><label class="icon icon-stop" for="nowplaying-stop"></label></button>
-        <button class="button" id="nowplaying-next" tabindex="-1"><label class="icon icon-seek-next" for="nowplaying-next"></label></button>
-        <button class="button" id="stream-btn" tabindex="-1"><span class="icon icon-signal-diag"></span> <label id="stream-btn-label" for="stream-btn">Stream</label></button>
-      </div>
-      <div id="client-vol" style="display: none">
-        <span class="icon icon-volume-off"></span>
-        <input type="range" id="client-vol-slider" min="0.0" max="1.0" step="0.0001" tabindex="-1">
-        <span class="icon icon-volume-on"></span>
-      </div>
-      <h1 id="track-display"></h1>
-      <input type="range" id="track-slider" min="0.0" max="1.0" step="0.0001" tabindex="-1">
-      <span id="nowplaying-time-elapsed"></span>
-      <span id="nowplaying-time-left"></span>
-      <div style="clear: both;"></div>
-    </div>
-    <div id="left-window" style="display: none">
-      <div id="tabs">
-        <ul>
-          <li id="library-tab" class="active">Library</li>
-          <li id="playlists-tab">Playlists</li>
-          <li id="upload-tab">Import</li>
-          <li id="events-tab">Chat</li>
-          <li id="settings-tab">Settings</li>
-        </ul>
-      </div>
+    <div class="panes">
       <div id="library-pane" class="widget">
         <div id="lib-window-header" class="window-header">
           <input type="text" id="lib-filter" placeholder="filter">
@@ -202,6 +172,28 @@
         </div>
       </div>
     </div>
+  </div>
+  <div id="mainpane">
+    <div id="nowplaying" class="widget" style="display: none">
+      <div class="playback-btns">
+        <button class="button" id="nowplaying-prev" tabindex="-1"><label class="icon icon-seek-prev" for="nowplaying-prev"></label></button>
+        <button class="button" id="nowplaying-toggle" tabindex="-1"><label id="nowplaying-toggle-icon" class="icon icon-pause" for="nowplaying-toggle-icon"></label></button>
+        <button class="button" id="nowplaying-stop" tabindex="-1"><label class="icon icon-stop" for="nowplaying-stop"></label></button>
+        <button class="button" id="nowplaying-next" tabindex="-1"><label class="icon icon-seek-next" for="nowplaying-next"></label></button>
+        <button class="button" id="stream-btn" tabindex="-1"><span class="icon icon-signal-diag"></span> <label id="stream-btn-label" for="stream-btn">Stream</label></button>
+      </div>
+      <div id="client-vol" style="display: none">
+        <span class="icon icon-volume-off"></span>
+        <input type="range" id="client-vol-slider" min="0.0" max="1.0" step="0.0001" tabindex="-1">
+        <span class="icon icon-volume-on"></span>
+      </div>
+      <h1 id="track-display"></h1>
+      <input type="range" id="track-slider" min="0.0" max="1.0" step="0.0001" tabindex="-1">
+      <span id="nowplaying-time-elapsed"></span>
+      <span id="nowplaying-time-left"></span>
+      <div style="clear: both;"></div>
+    </div>
+
     <div id="queue-window" class="widget" style="display: none">
       <div class="window-header">
         <input class="button" type="button" id="auto-dj" value="Auto DJ" tabindex="-1">

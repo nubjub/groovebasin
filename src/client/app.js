@@ -2456,30 +2456,35 @@ function onSmallButtonLibrary(ev) {
   ev.stopPropagation();
   ev.preventDefault();
   expandSidePane();
+  document.getElementById('library-pane').style.display = '';
 }
 
 function onSmallButtonImport(ev) {
   ev.stopPropagation();
   ev.preventDefault();
   expandSidePane();
+  document.getElementById('upload-pane').style.display = '';
 }
 
 function onSmallButtonPlaylists(ev) {
   ev.stopPropagation();
   ev.preventDefault();
   expandSidePane();
+  document.getElementById('playlists-pane').style.display = '';
 }
 
 function onSmallButtonChat(ev) {
   ev.stopPropagation();
   ev.preventDefault();
   expandSidePane();
+  document.getElementById('events-pane').style.display = '';
 }
 
 function onSmallButtonSettings(ev) {
   ev.stopPropagation();
   ev.preventDefault();
   expandSidePane();
+  document.getElementById('settings-pane').style.display = '';
 }
 
 function onSmallButtonClose(ev) {
@@ -2491,11 +2496,21 @@ function onSmallButtonClose(ev) {
 function expandSidePane() {
   var sidePane = document.getElementById('sidepane');
   sidePane.className = 'expanded';
+  hideSidePaneElements();
 }
 
 function condenseSidePane() {
   var sidePane = document.getElementById('sidepane');
   sidePane.className = 'condensed';
+  hideSidePaneElements();
+}
+
+function hideSidePaneElements() {
+  document.getElementById('library-pane').style.display = 'none';
+  document.getElementById('upload-pane').style.display = 'none';
+  document.getElementById('playlists-pane').style.display = 'none';
+  document.getElementById('events-pane').style.display = 'none';
+  document.getElementById('settings-pane').style.display = 'none';
 }
 
 function onAddToPlaylistListClick(ev) {
