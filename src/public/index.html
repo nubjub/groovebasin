@@ -86,11 +86,10 @@
       <div id="settings-pane" class="widget" style="display: none">
         <div id="settings">
           <div class="section">
-            <h1>Authentication</h1>
             <div id="ensure-admin" style="display: none;">
               <p>
-              There is currently no admin account. Press this button to create the
-              admin account and print the username and password to the server log:
+                There is currently no admin account. Press this button to create the
+                admin account and print the username and password to the server log:
               </p>
               <input class="button" type="button" id="ensure-admin-btn" value="Make Admin Account">
             </div>
@@ -102,8 +101,8 @@
               <input class="button" type="button"  id="settings-auth-cancel" value="Cancel">
             </div>
             <div id="settings-show-auth">
-              <p>Authenticated as <span id="auth-username-display">...</span></p>
-              <p>Permissions:
+              <p>You are: <span id="auth-username-display"></span></p>
+              <p>You can:
                 <span class="perm" id="auth-perm-read" title="Read access to everything">read</span>
                 <span class="perm" id="auth-perm-add" title="Import new songs">add</span>
                 <span class="perm" id="auth-perm-control" title="Control playback and the queue">control</span>
@@ -135,17 +134,16 @@
             </div>
           </div>
           <div class="section">
-            <h1>Last.fm</h1>
+            <hr />
             <div id="settings-lastfm-in">
               <p>
-                Authenticated as
-                <a id="settings-lastfm-user" href="#">...</a>.
-                <input class="button" type="button" id="lastfm-sign-out" value="Sign out">
+                <i class="fa fa-lastfm-square"></i> Last.fm user: <a id="settings-lastfm-user" href="#"></a>.
               </p>
               <p>
-                Scrobbling is
+                Scrobbling is:
                 <input class="button" type="button" id="toggle-scrobble" value="Off">
               </p>
+              <input class="button" type="button" id="lastfm-sign-out" value="Sign out">
             </div>
             <div id="settings-lastfm-out">
               <p>
@@ -154,29 +152,28 @@
             </div>
           </div>
           <div class="section">
-            <h1>Sound</h1>
-            <div>
-              Hardware audio playback is
+            <hr />
+            <div id="vol">
+              <i class="fa fa-volume-down"></i>
+              <input type="range" id="vol-slider" min="0.0" max="2.0" step="0.0001">
+              <i class="fa fa-volume-up"></i>
+            </div>
+            <div class="vol-readout">Volume: <span id="vol-num"></span>%</div>
+            <div id="vol-warning" class="hint" style="display: none">
+              <p><i class="fa fa-exclamation-triangle"></i> Greater than 100% volume compromises audio quality.</p>
+              <i class="fa fa-external-link loudness-zen-icon"></i> <a target="_blank" href="https://www.youtube.com/watch?v=iuEtQqC-Sqo">Loudness Zen</a>
+            </div>
+            <div class="hardware-audio-playback">
+              Hardware audio playback is:
               <input class="button" type="button" id="toggle-hardware-playback" value="On">
             </div>
-            <div>Volume: <span id="vol-num"></span>%</div>
-            <div id="vol-warning" style="display: none">
-              Greater than 100% volume compromises audio quality.
-              <a target="_blank" href="https://www.youtube.com/watch?v=iuEtQqC-Sqo">Loudness Zen</a>
-            </div>
-            <div id="vol">
-              <span class="icon icon-volume-off"></span>
-              <input type="range" id="vol-slider" min="0.0" max="2.0" step="0.0001">
-              <span class="icon icon-volume-on"></span>
-            </div>
-            <div style="clear: both;"></div>
           </div>
           <div class="section">
-            <h1>About</h1>
-            <ul>
-              <li><a id="keyboard-shortcuts-link" href="#">Keyboard Shortcuts</a></li>
-              <li><a id="settings-stream-url" href="#" target="_blank">Stream URL</a></li>
-              <li><a href="http://github.com/andrewrk/groovebasin" target="_blank">GrooveBasin on GitHub</a></li>
+            <hr />
+            <ul id="about-ul">
+              <li><i class="fa fa-keyboard-o"></i> <a id="keyboard-shortcuts-link" href="#">Keyboard Shortcuts</a></li>
+              <li><i class="fa fa-headphones"></i> <a id="settings-stream-url" href="#" target="_blank">Stream URL</a></li>
+              <li><i class="fa fa-github-alt"></i> <a href="http://github.com/andrewrk/groovebasin" target="_blank">GrooveBasin on GitHub</a></li>
             </ul>
           </div>
         </div>

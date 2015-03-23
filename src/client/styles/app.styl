@@ -88,6 +88,27 @@ a:hover,a:active,a:focus
       margin 5px
       &.fa-times
         float right
+  #settings-pane
+    #auth-username, #auth-password
+      width 300px
+    #auth-username-display
+      font-weight bold
+    #settings-show-auth p
+      margin-bottom: 8px
+    #toggle-hardware-playback
+      width auto
+    #about-ul li
+      margin-bottom 8px
+    #toggle-scrobble
+      width auto
+    .button
+      width 100%
+    .vol-readout
+      font-size 0.9em
+      #vol-num
+        font-weight bold
+    .hardware-audio-playback
+      font-size 0.9em
 
 #mainpane
   display inline-block
@@ -136,7 +157,7 @@ a:hover,a:active,a:focus
 input[type=range]
   -webkit-appearance none
   margin 10px 10px 5px
-  width calc(100% - 20px)
+  // width calc(100% - 20px)
   height 14px
   border-radius 4px
   border 1px solid #000
@@ -197,11 +218,11 @@ button:hover .icon
 .icon-signal-diag
   background-position -16px -176px
 
-.icon-volume-off
-  background-position -128px -160px
+// .icon-volume-off
+//   background-position -128px -160px
 
-.icon-volume-on
-  background-position -144px -160px
+// .icon-volume-on
+//   background-position -144px -160px
 
 .icon-info
   background-position -16px -144px
@@ -276,9 +297,6 @@ button:hover .icon
 #client-vol-slider
   margin 3px
 
-#vol-slider
-  margin 3px 0 0 0
-
 #nowplaying
   margin 6px auto
   text-align center
@@ -306,13 +324,14 @@ button:hover .icon
 
 #client-vol, #vol
   margin 8px
-  span
-    float left
+
+#vol
+  > *
+    display inline-block
+    vertical-align middle
 
 #client-vol-slider, #vol-slider
-  float left
   height 10px
-
   .ui-slider-handle
     height 16px
     width 16px
@@ -322,13 +341,19 @@ button:hover .icon
   width 60px
 
 #vol-slider
-  width 300px
+  margin 3px 0 0 0
+  width calc(95% - 40px)
 
-#vol-warning
-  color #B63434
+#vol-warning.hint
+  color #B63434 !important
 
-#vol-warning a
-  color #57BF3B
+#vol-warning.hint
+  a, .loudness-zen-icon
+    color #57BF3B
+    font-style normal
+  .loudness-zen-icon
+    position relative
+    top 2px
 
 // #left-window
 //   width 400px
@@ -558,7 +583,7 @@ button:hover .icon
 #settings
   padding 6px
   .section
-    margin-bottom 14px
+    margin-bottom 8px
     h1
       font-weight bold
       font-size 1.4em
@@ -571,11 +596,8 @@ button:hover .icon
       font-style italic
     ul
       font-size .9em
-      li:before
-        content "\2713"
-
-#auth-username, #auth-password
-  width 300px
+      // li:before
+      //   content "\2713"
 
 #settings-users-select
   width 350px
