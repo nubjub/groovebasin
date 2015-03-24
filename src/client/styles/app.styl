@@ -45,6 +45,9 @@ input, textarea
 a:hover,a:active,a:focus
   outline 0
 
+.clearfix
+  clear both
+
 #sidepane
   background mediumBlue
   box-sizing border-box
@@ -114,10 +117,52 @@ a:hover,a:active,a:focus
       font-size 0.9em
 
 #mainpane
-  display inline-block
   height 100%
   margin 0
+  overflow hidden
   padding 0
+  width auto
+  > *
+    width auto
+  #nowplaying
+    background-color rgb(178, 188, 197)
+    padding 5px 10px
+    h1
+      font-size 16px
+      letter-spacing 0.1em
+      font-weight bold
+    #nowplaying-album-art
+      float left
+      width 30%
+    .song-info
+      display block
+      overflow hidden
+      padding 10px
+      vertical-align top
+      width auto
+      > *
+        display inline-block
+        vertical-align top
+      .song-info-label
+        color rgb(29, 77, 122)
+        font-size 0.65em
+        font-weight bold
+        margin-top 10px
+      .song-info-data
+        color rgb(247, 247, 247)
+        font-weight 100
+        font-size 1.3em
+        text-shadow 0px 0px 4px rgba(0,0,0,0.5)
+      .main-info
+        width 100%
+        > *
+          display inline-block
+        .primary
+          width 50%
+      .playback-btns
+        display block
+        margin-top 30px
+        text-align center
 
 .button
   background #333333 url("img/ui-bg_dots-small_20_333333_2x2.png") 50% 50% repeat
@@ -280,9 +325,7 @@ button:hover .icon
   z-index 1
   font-weight normal
   width 274px
-
-  li
-    a
+  li a
       font-size 16px
       text-decoration none
       display block
@@ -299,19 +342,6 @@ button:hover .icon
 
 #client-vol-slider
   margin 3px
-
-#nowplaying
-  margin 6px auto
-  text-align center
-
-  .playback-btns
-    float left
-
-  h1
-    font-size 16px
-    letter-spacing 0.1em
-    margin-top 8px
-    font-weight bold
 
 #nowplaying-time-elapsed
   float left

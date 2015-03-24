@@ -181,13 +181,43 @@
     </div>
   </div>
   <div id="mainpane">
-    <div id="nowplaying" class="widget" style="display: none">
-      <div class="playback-btns">
-        <button class="button" id="nowplaying-prev" tabindex="-1"><label class="icon icon-seek-prev" for="nowplaying-prev"></label></button>
-        <button class="button" id="nowplaying-toggle" tabindex="-1"><label id="nowplaying-toggle-icon" class="icon icon-pause" for="nowplaying-toggle-icon"></label></button>
-        <button class="button" id="nowplaying-stop" tabindex="-1"><label class="icon icon-stop" for="nowplaying-stop"></label></button>
-        <button class="button" id="nowplaying-next" tabindex="-1"><label class="icon icon-seek-next" for="nowplaying-next"></label></button>
-        <button class="button" id="stream-btn" tabindex="-1"><span class="icon icon-signal-diag"></span> <label id="stream-btn-label" for="stream-btn">Stream</label></button>
+    <div id="nowplaying" style="display: none">
+      <div class="top">
+        <img id="nowplaying-album-art" src="http://i.imgur.com/YvaZnQIm.jpg" />
+        <div class="song-info">
+          <div class="main-info">
+            <div class="primary">
+              <div class="song-info-label">
+                Title:
+              </div>
+              <div class="song-info-data">
+                Neurobazaar
+              </div>
+              <div class="song-info-label">
+                Artist:
+              </div>
+              <div class="song-info-data">
+                Zircon
+              </div>
+              <div class="song-info-label">
+                Album:
+              </div>
+              <div class="song-info-data">
+                Identity Sequence
+              </div>
+            </div>
+            <div class="secondary">
+            </div>
+          </div>
+          <div class="playback-btns">
+            <button class="button" id="nowplaying-prev" tabindex="-1"><label class="icon icon-seek-prev" for="nowplaying-prev"></label></button>
+            <button class="button" id="nowplaying-toggle" tabindex="-1"><label id="nowplaying-toggle-icon" class="icon icon-pause" for="nowplaying-toggle-icon"></label></button>
+            <button class="button" id="nowplaying-stop" tabindex="-1"><label class="icon icon-stop" for="nowplaying-stop"></label></button>
+            <button class="button" id="nowplaying-next" tabindex="-1"><label class="icon icon-seek-next" for="nowplaying-next"></label></button>
+            <button class="button" id="stream-btn" tabindex="-1"><span class="icon icon-signal-diag"></span> <label id="stream-btn-label" for="stream-btn">Stream</label></button>
+          </div>
+        </div>
+        <div class="clearfix"></div>
       </div>
       <div id="client-vol" style="display: none">
         <span class="icon icon-volume-off"></span>

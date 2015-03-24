@@ -4028,15 +4028,15 @@ function toPlaylistId(s) {
 }
 
 function resizeDomElements() {
-  var eventsScrollTop = eventsListDom.scrollTop;
+  // var eventsScrollTop = eventsListDom.scrollTop;
 
-  nowPlayingDom.style.width = (window.innerWidth - MARGIN * 2) + "px";
-  var secondLayerTop = nowPlayingDom.getBoundingClientRect().top + nowPlayingDom.clientHeight + MARGIN;
+  // nowPlayingDom.style.width = (window.innerWidth - MARGIN * 2) + "px";
+  // var secondLayerTop = nowPlayingDom.getBoundingClientRect().top + nowPlayingDom.clientHeight + MARGIN;
   // leftWindowDom.style.left = MARGIN + "px";
   // leftWindowDom.style.top = secondLayerTop + "px";
   // var queueWindowLeft = MARGIN + leftWindowDom.clientWidth + MARGIN;
   // queueWindowDom.style.left = queueWindowLeft + "px";
-  queueWindowDom.style.top = secondLayerTop + "px";
+  // queueWindowDom.style.top = secondLayerTop + "px";
   // queueWindowDom.style.width = (window.innerWidth - queueWindowLeft - MARGIN) + "px";
   // leftWindowDom.style.height = (window.innerHeight - secondLayerTop) + "px";
   // queueWindowDom.style.height = (leftWindowDom.clientHeight - MARGIN) + "px";
@@ -4047,7 +4047,7 @@ function resizeDomElements() {
   // playlistsDom.style.height = (tabContentsHeight - newPlaylistNameDom.offsetHeight) + "px";
 
   // setAllTabsHeight(tabContentsHeight);
-  queueItemsDom.style.height = (queueWindowDom.clientHeight - queueHeaderDom.offsetTop - queueHeaderDom.clientHeight) + "px";
+  // queueItemsDom.style.height = (queueWindowDom.clientHeight - queueHeaderDom.offsetTop - queueHeaderDom.clientHeight) + "px";
 
   if (eventsListScrolledToBottom) {
     scrollEventsToBottom();
