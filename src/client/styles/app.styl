@@ -165,7 +165,7 @@ a:hover,a:active,a:focus
         margin-top 30px
         text-align center
         .button
-          background rgba(28, 75, 121, 0.12)
+          background rgba(28, 75, 121, 0.15)
           border-bottom-color rgb(10, 61, 110)
           border-radius 4px
           color rgb(28, 75, 121)
@@ -183,6 +183,16 @@ a:hover,a:active,a:focus
     bottom 25px
     color rgba(255, 255, 255, 0.75)
     position relative
+  #queue-window
+      background-color rgb(10, 61, 110)
+      bottom 4px
+      height calc(100% - 249px)
+      position relative
+    .window-header
+      background-color rgba(178, 188, 197, 0.5)
+      font-size .6em
+      margin-bottom 4px
+      padding 3px 0
 
 .button
   background #1C4B79
@@ -193,30 +203,22 @@ a:hover,a:active,a:focus
   cursor pointer
   margin 0
   padding 5px
-
+  .on
+    color #75abff
   span
     display inline-block
-
   label
     cursor pointer
     vertical-align top
+  &:hover
+    background rgba(255, 255, 255, 0.3)
 
-.button:hover
-  background #00498f url("img/ui-bg_dots-small_40_00498f_2x2.png") 50% 50% repeat
+  &:disabled
+    opacity .35
+    background-image none
 
-.button:disabled
-  opacity .35
-  background-image none
-
-.button:focus
-  outline 0
-
-.button.on
-  margin 2px 0 0px 0px
-  border 1px solid #096ac8
-  background #292929 url("img/ui-bg_flat_40_292929_40x100.png") 50% 50% repeat-x
-  font-weight bold
-  color #75abff
+  &:focus
+    outline 0
 
 #stream-btn
   padding-right 11px
@@ -406,49 +408,17 @@ button:hover .icon
     position relative
     top 2px
 
-// #left-window
-//   width 400px
-//   position absolute
-
 #library-pane
   .window-header
     height 30px
-
-#tabs
-  user-select none
-
-  ul
-    li
-      display inline-block
-      background #333333 url("img/ui-bg_dots-small_20_333333_2x2.png") 50% 50% repeat
-      color #fff
-      margin 0
-      padding 6px
-      cursor pointer
-      font-size 13px
-      border-top-left-radius 4px
-      border-top-right-radius 4px
-
-      &.active, &.active:hover
-        border 1px solid #096ac8
-        border-bottom 0
-        color #75abff
-        background #292929 url("img/ui-bg_flat_40_292929_40x100.png") 50% 50% repeat-x
-
-      &:hover
-        border 1px solid #222222
-        border-bottom 0
-        background #00498f url("img/ui-bg_dots-small_40_00498f_2x2.png") 50% 50% repeat
 
 #library, #playlists
   cursor default
   margin-top 8px
   overflow-y auto
   user-select none
-
   div.icon
     float left
-
   p
     border 1px solid #052f57
     background #0b58a2 url("img/ui-bg_dots-medium_30_0b58a2_4x4.png") 50% 50% repeat
@@ -464,16 +434,13 @@ button:hover .icon
       background-image url("img/ui-icons_ffffff_256x240.png")
     strong
       font-weight bold
-
   ul
     ul
       margin-left 9px
       ul
         margin-left 16px
-
     div.selected
       selected-div()
-
     div.cursor
       text-decoration underline
 
@@ -482,14 +449,6 @@ button:hover .icon
 
 #organize
   width 200px
-
-#queue-window
-  width 700px
-  position absolute
-
-  .window-header
-    margin-bottom 4px
-    font-size .6em
 
 #queue-duration, #queue-duration-label
   font-size 1.4em
@@ -500,22 +459,16 @@ button:hover .icon
     overflow-x hidden
     overflow-y hidden
     height 1.2em
-
   span.track
     width 26px
-
   span.title
     width 30%
-
   span.artist
     width 30%
-
   span.album
     width 30%
-
   span.time
     width 36px
-
   span
     white-space nowrap
     height 1.2em
@@ -528,49 +481,36 @@ button:hover .icon
   overflow-y auto
   overflow-x hidden
   clear both
-
   width 100%
-
   user-select none
-
   div
     clear both
     overflow-x hidden
     overflow-y hidden
     height 1.2em
     cursor default
-
   div:nth-child(2n+1)
     background-color #2A2A2A
-
   div.random
     color #96B7EB
-
   div.old
     color #555555
-
   div.selected
     selected-div()
-
   div.current
     border 1px solid #096AC8
     background-color lightGray
     font-weight bold
     color #75abff
-
   div.cursor
     span
       text-decoration underline
-
   div.border-bottom
     border-bottom 2px dashed #ffffff
-
   div.border-top
     border-top 2px dashed #ffffff
-
   span.track
     text-align right
-
   span.time
     text-align right
 

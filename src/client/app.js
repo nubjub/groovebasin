@@ -619,10 +619,10 @@ var streamBtnDom = document.getElementById('stream-btn');
 var streamBtnLabel = document.getElementById('stream-btn-label');
 var clientVolDom = document.getElementById('client-vol');
 var queueWindowDom = document.getElementById('queue-window');
-// var leftWindowDom = document.getElementById('left-window');
 var queueItemsDom = document.getElementById('queue-items');
 var autoDjDom = document.getElementById('auto-dj');
 var queueBtnRepeatDom = document.getElementById('queue-btn-repeat');
+var queueBtnRepeatLabelDom = document.getElementById('queue-btn-repeat-label');
 var tabsDom = document.getElementById('tabs');
 var libraryDom = document.getElementById('library');
 var libFilterDom = document.getElementById('lib-filter');
@@ -1496,7 +1496,7 @@ function renderQueueButtons() {
   renderAutoDj();
   var repeatModeName = repeatModeNames[player.repeat];
 
-  queueBtnRepeatDom.value = "Repeat: " + repeatModeName;
+  queueBtnRepeatLabelDom.textContent = "Repeat: " + repeatModeName;
   if (player.repeat === PlayerClient.REPEAT_OFF) {
     queueBtnRepeatDom.classList.remove("on");
   } else {
