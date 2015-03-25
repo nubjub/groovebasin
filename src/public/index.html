@@ -10,6 +10,10 @@
 <body>
   <div id="sidepane" class="condensed">
     <div class="smallbuttons">
+      <button class="button" id="stream-btn" tabindex="-1">
+        <span class="icon icon-signal-diag"></span>
+        <label id="stream-btn-label" for="stream-btn">Stream</label>
+      </button>
       <i id="sb-library" class="fa fa-bars"></i>
       <i id="sb-import" class="fa fa-download"></i>
       <i id="sb-playlists" class="fa fa-bug"></i>
@@ -187,34 +191,21 @@
         <div class="song-info">
           <div class="main-info">
             <div class="primary">
-              <div class="song-info-label">
-                Title:
-              </div>
-              <div class="song-info-data">
-                Neurobazaar
-              </div>
-              <div class="song-info-label">
-                Artist:
-              </div>
-              <div class="song-info-data">
-                Zircon
-              </div>
-              <div class="song-info-label">
-                Album:
-              </div>
-              <div class="song-info-data">
-                Identity Sequence
-              </div>
+              <div class="song-info-label">Title:</div>
+              <div id="track-display-title" class="song-info-data"></div>
+              <div class="song-info-label">Artist:</div>
+              <div id="track-display-artist" class="song-info-data"></div>
+              <div class="song-info-label">Album:</div>
+              <div id="track-display-album" class="song-info-data"></div>
             </div>
             <div class="secondary">
             </div>
           </div>
           <div class="playback-btns">
-            <button class="button" id="nowplaying-prev" tabindex="-1"><label class="icon icon-seek-prev" for="nowplaying-prev"></label></button>
-            <button class="button" id="nowplaying-toggle" tabindex="-1"><label id="nowplaying-toggle-icon" class="icon icon-pause" for="nowplaying-toggle-icon"></label></button>
-            <button class="button" id="nowplaying-stop" tabindex="-1"><label class="icon icon-stop" for="nowplaying-stop"></label></button>
-            <button class="button" id="nowplaying-next" tabindex="-1"><label class="icon icon-seek-next" for="nowplaying-next"></label></button>
-            <button class="button" id="stream-btn" tabindex="-1"><span class="icon icon-signal-diag"></span> <label id="stream-btn-label" for="stream-btn">Stream</label></button>
+            <button class="button" id="nowplaying-prev" tabindex="-1"><i class="fa fa-fast-backward"></i></button>
+            <button class="button" id="nowplaying-toggle" tabindex="-1"><i id="nowplaying-toggle-icon" class="fa fa-pause"></i></button>
+            <button class="button" id="nowplaying-stop" tabindex="-1"><i class="fa fa-stop"></i></button>
+            <button class="button" id="nowplaying-next" tabindex="-1"><i class="fa fa-fast-forward"></i></button>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -224,11 +215,14 @@
         <input type="range" id="client-vol-slider" min="0.0" max="1.0" step="0.0001" tabindex="-1">
         <span class="icon icon-volume-on"></span>
       </div>
-      <h1 id="track-display"></h1>
+    </div>
+
+    <div class="trackbar-container">
       <input type="range" id="track-slider" min="0.0" max="1.0" step="0.0001" tabindex="-1">
+    </div>
+    <div class="trackbar-time-container">
       <span id="nowplaying-time-elapsed"></span>
       <span id="nowplaying-time-left"></span>
-      <div style="clear: both;"></div>
     </div>
 
     <div id="queue-window" class="widget" style="display: none">

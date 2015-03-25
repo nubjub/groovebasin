@@ -641,7 +641,9 @@ var mainErrMsgTextDom = document.getElementById('main-err-msg-text');
 var playlistsListDom = document.getElementById('playlists-list');
 var playlistsDom = document.getElementById('playlists');
 var uploadDom = document.getElementById('upload');
-var trackDisplayDom = document.getElementById('track-display');
+var trackDisplayTitleDom = document.getElementById('track-display-title');
+var trackDisplayArtistDom = document.getElementById('track-display-artist');
+var trackDisplayAlbumDom = document.getElementById('track-display-album');
 var libHeaderDom = document.getElementById('lib-window-header');
 var queueHeaderDom = document.getElementById('queue-header');
 var autoQueueUploadsDom = document.getElementById('auto-queue-uploads');
@@ -1931,6 +1933,18 @@ function getNowPlayingText(track) {
   return str;
 }
 
+function setNowPlayingText(track) {
+  if (!track) {
+    trackDisplayTitleDom.textContent = '(Deleted Track)';
+    trackDisplayArtistDom.textContent = '(Deleted Track)';
+    trackDisplayAlbumDom.textContent = '(Deleted Track)';
+  } else {
+    trackDisplayTitleDom.textContent = track.name;
+    trackDisplayArtistDom.textContent = track.artistName;
+    trackDisplayAlbumDom.textContent = track.albumName;
+  }
+}
+
 function renderNowPlaying() {
   var track = null;
   if (player.currentItem != null) {
@@ -1938,13 +1952,9 @@ function renderNowPlaying() {
   }
 
   updateTitle();
-  if (track) {
-    trackDisplayDom.textContent = getNowPlayingText(track);
-  } else {
-    trackDisplayDom.innerHTML = "&nbsp;";
-  }
-  var oldClass = (player.isPlaying === true) ? 'icon-play' : 'icon-pause';
-  var newClass = (player.isPlaying === true) ? 'icon-pause': 'icon-play';
+  setNowPlayingText(track);
+  var oldClass = (player.isPlaying === true) ? 'fa-play' : 'fa-pause';
+  var newClass = (player.isPlaying === true) ? 'fa-pause': 'fa-play';
   nowPlayingToggleIconDom.classList.remove(oldClass);
   nowPlayingToggleIconDom.classList.add(newClass);
   trackSliderDom.disabled = (player.isPlaying == null);
