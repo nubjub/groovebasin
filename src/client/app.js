@@ -616,7 +616,7 @@ var localState = {
   autoQueueUploads: true,
 };
 var streamBtnDom = document.getElementById('stream-btn');
-var streamBtnLabel = document.getElementById('stream-btn-label');
+var streamingUserCountDom = document.getElementById('streaming-user-count');
 var clientVolDom = document.getElementById('client-vol');
 var queueWindowDom = document.getElementById('queue-window');
 var queueItemsDom = document.getElementById('queue-items');
@@ -3022,39 +3022,6 @@ function onVolSliderMouseUp(ev) {
   userIsVolumeSliding = false;
 }
 
-// function clickTab(tab) {
-//   unselectTabs();
-//   tab.tab.classList.add('active');
-//   tab.pane.style.display = "";
-//   activeTab = tab;
-//   triggerResize();
-//   if (tab === tabs.events) {
-//     player.markAllEventsSeen();
-//     renderUnseenChatCount();
-//   }
-// }
-
-// function setUpTabListener(tab) {
-//   tab.tab.addEventListener('click', function(ev) {
-//     clickTab(tab);
-//   }, false);
-// }
-
-// function setUpTabsUi() {
-//   for (var name in tabs) {
-//     var tab = tabs[name];
-//     setUpTabListener(tab);
-//   }
-// }
-
-// function unselectTabs() {
-//   for (var name in tabs) {
-//     var tab = tabs[name];
-//     tab.tab.classList.remove('active');
-//     tab.pane.style.display = "none";
-//   }
-// }
-
 function uploadFiles(files) {
   if (files.length === 0) return;
 
@@ -3996,7 +3963,6 @@ function setUpUi() {
   setUpPlaylistsUi();
   setUpLibraryUi();
   setUpNowPlayingUi();
-  // setUpTabsUi();
   setUpUploadUi();
   setUpSettingsUi();
   setUpEditTagsUi();
@@ -4099,12 +4065,8 @@ function getStreamStatusLabel() {
   }
 }
 
-function getStreamButtonLabel() {
-  return getStreamerCount() + " Stream: " + getStreamStatusLabel();
-}
-
 function renderStreamButton() {
-  streamBtnLabel.textContent = getStreamButtonLabel();
+  streamingUserCountDom.textContent = getStreamerCount();
   updateBtnOn(streamBtnDom, tryingToStream);
   clientVolDom.style.display = tryingToStream ? "" : "none";
 }
