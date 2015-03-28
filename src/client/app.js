@@ -4365,7 +4365,6 @@ function popDialog(dom, title, width, height) {
   closeOpenDialog = function() {
     blackoutDom.style.display = "none";
     modalDom.style.display = "none";
-    modalDom.style.display = "none";
     dom.style.display = "none";
     dom.parentNode.removeChild(dom);
     document.body.appendChild(dom);
