@@ -21,6 +21,11 @@ slider-handle()
   height 24px
   width 14px
 
+volume-slider-handle()
+  slider-handle()
+  height 12px
+  width 10px
+
 html
   background url(img/ui-bg_diagonals-thick_15_0b3e6f_40x40.png)
   height 100%
@@ -275,12 +280,9 @@ a:hover,a:active,a:focus
           display inline-block
           vertical-align top
           width 49.5%
-          #client-vol
-            float right
       .playback-btns
         display block
-        margin-top 30px
-        text-align center
+        margin-top 15px
         .button
           background rgba(28, 75, 121, 0.15)
           border-bottom-color rgb(10, 61, 110)
@@ -289,6 +291,9 @@ a:hover,a:active,a:focus
           font-size 14px
           height 30px
           width 30px
+        #client-vol
+          display inline-block
+          vertical-align baseline
   .trackbar-container
     #track-slider
       border 0
@@ -354,6 +359,24 @@ input[type=range]
     slider-handle()
   &:focus
     outline 0
+
+#client-vol-slider
+  height 0
+  margin 3px
+  width 60px
+  &::-webkit-slider-thumb
+    volume-slider-handle()
+  &::-moz-range-thumb
+    volume-slider-handle()
+
+#vol-slider
+  height 10px
+  margin 3px 0 0 0
+  width calc(95% - 40px)
+  .ui-slider-handle
+    height 16px
+    width 16px
+    margin-top 2px
 
 .widget
   color #d9d9d9
@@ -459,9 +482,6 @@ button:hover .icon
       padding-right 5px
       padding-top 8px
 
-#client-vol-slider
-  margin 3px
-
 #nowplaying-time-elapsed
   float left
   margin 4px
@@ -478,20 +498,6 @@ button:hover .icon
   > *
     display inline-block
     vertical-align middle
-
-#client-vol-slider, #vol-slider
-  height 10px
-  .ui-slider-handle
-    height 16px
-    width 16px
-    margin-top 2px
-
-#client-vol-slider
-  width 60px
-
-#vol-slider
-  margin 3px 0 0 0
-  width calc(95% - 40px)
 
 #vol-warning.hint
   color #B63434 !important
