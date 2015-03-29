@@ -623,7 +623,6 @@ var queueItemsDom = document.getElementById('queue-items');
 var autoDjDom = document.getElementById('auto-dj');
 var queueBtnRepeatDom = document.getElementById('queue-btn-repeat');
 var queueBtnRepeatLabelDom = document.getElementById('queue-btn-repeat-label');
-var tabsDom = document.getElementById('tabs');
 var libraryDom = document.getElementById('library');
 var libFilterDom = document.getElementById('lib-filter');
 var nowPlayingDom = document.getElementById('nowplaying');
@@ -734,30 +733,32 @@ var addToPlaylistDialog = document.getElementById('add-to-playlist-dialog');
 var addToPlaylistFilter = document.getElementById('add-to-playlist-filter');
 var addToPlaylistList = document.getElementById('add-to-playlist-list');
 var addToPlaylistNew = document.getElementById('add-to-playlist-new');
+var sidePaneDom = document.getElementById('sidepane');
 
-var tabs = {
+var panes = {
   library: {
     pane: document.getElementById('library-pane'),
-    tab: document.getElementById('library-tab'),
+    icon: document.getElementById('sb-library'),
   },
   upload: {
     pane: document.getElementById('upload-pane'),
-    tab: document.getElementById('upload-tab'),
+    icon: document.getElementById('sb-import'),
   },
   playlists: {
     pane: document.getElementById('playlists-pane'),
-    tab: document.getElementById('playlists-tab'),
+    icon: document.getElementById('sb-playlists'),
   },
   events: {
     pane: document.getElementById('events-pane'),
-    tab: document.getElementById('events-tab'),
+    icon: document.getElementById('sb-chat'),
   },
   settings: {
     pane: document.getElementById('settings-pane'),
-    tab: document.getElementById('settings-tab'),
+    icon: document.getElementById('sb-settings'),
   },
 };
-var activeTab = tabs.library;
+
+var activePane;
 var triggerRenderLibrary = makeRenderCall(renderLibrary, 100);
 var triggerRenderQueue = makeRenderCall(renderQueue, 100);
 var triggerPlaylistsUpdate = makeRenderCall(updatePlaylistsUi, 100);
@@ -897,7 +898,7 @@ var keyboardHandlers = (function() {
         if (ev.shiftKey) {
           onEditTagsContextMenu(ev);
         } else {
-          clickTab(tabs.settings);
+          switchPane(panes.settings);
         }
       },
     },
@@ -914,7 +915,7 @@ var keyboardHandlers = (function() {
       alt: false,
       shift: false,
       handler: function() {
-        clickTab(tabs.playlists);
+        switchPane(panes.playlists);
         newPlaylistNameDom.focus();
         newPlaylistNameDom.select();
       },
@@ -945,7 +946,7 @@ var keyboardHandlers = (function() {
       alt: false,
       shift: false,
       handler: function() {
-        clickTab(tabs.events);
+        switchPane(panes.events);
         chatBoxInputDom.focus();
         chatBoxInputDom.select();
         scrollEventsToBottom();
@@ -957,7 +958,7 @@ var keyboardHandlers = (function() {
       alt: false,
       shift: false,
       handler: function() {
-        clickTab(tabs.upload);
+        switchPane(panes.upload);
         uploadByUrlDom.focus();
         uploadByUrlDom.select();
       },
@@ -995,7 +996,7 @@ var keyboardHandlers = (function() {
         if (ev.shiftKey) {
           showKeyboardShortcuts(ev);
         } else {
-          clickTab(tabs.library);
+          switchPane(panes.library);
           libFilterDom.focus();
           libFilterDom.select();
           selection.fullClear();
@@ -2454,73 +2455,49 @@ function setUpGenericUi() {
   addToPlaylistFilter.addEventListener('paste', updateAddToPlaylistDialogDisplay, false);
   addToPlaylistNew.addEventListener('mousedown', onAddToPlaylistNewClick, false);
   addToPlaylistList.addEventListener('mousedown', onAddToPlaylistListClick, false);
-  document.getElementById('sb-library').addEventListener('click', onSmallButtonLibrary, false);
-  document.getElementById('sb-import').addEventListener('click', onSmallButtonImport, false);
-  document.getElementById('sb-playlists').addEventListener('click', onSmallButtonPlaylists, false);
-  document.getElementById('sb-chat').addEventListener('click', onSmallButtonChat, false);
-  document.getElementById('sb-settings').addEventListener('click', onSmallButtonSettings, false);
-  document.getElementById('sb-close').addEventListener('click', onSmallButtonClose, false);
+  setupPaneClicks();
+  document.getElementById('sb-close').addEventListener('click', condenseSidePane, false);
 }
 
-function onSmallButtonLibrary(ev) {
-  ev.stopPropagation();
-  ev.preventDefault();
+function setupPaneClicks() {
+  for (var name in panes) {
+    var pane = panes[name];
+    pane.icon.addEventListener('click', switchPane.bind(null, pane), false);
+  }
+}
+
+function switchPane(pane) {
   expandSidePane();
-  document.getElementById('library-pane').style.display = '';
+  pane.pane.style.display = '';
+  highlightIcon(pane);
 }
 
-function onSmallButtonImport(ev) {
-  ev.stopPropagation();
-  ev.preventDefault();
-  expandSidePane();
-  document.getElementById('upload-pane').style.display = '';
+function highlightIcon(pane) {
+  for (var name in panes) {
+    panes[name].icon.classList.remove('active');
+  }
+  pane.icon.classList.add('active');
 }
 
-function onSmallButtonPlaylists(ev) {
-  ev.stopPropagation();
-  ev.preventDefault();
-  expandSidePane();
-  document.getElementById('playlists-pane').style.display = '';
-}
-
-function onSmallButtonChat(ev) {
-  ev.stopPropagation();
-  ev.preventDefault();
-  expandSidePane();
-  document.getElementById('events-pane').style.display = '';
-}
-
-function onSmallButtonSettings(ev) {
-  ev.stopPropagation();
-  ev.preventDefault();
-  expandSidePane();
-  document.getElementById('settings-pane').style.display = '';
-}
-
-function onSmallButtonClose(ev) {
-  ev.stopPropagation();
-  ev.preventDefault();
+function onSmallButtonClose() {
   condenseSidePane();
 }
 
 function expandSidePane() {
-  var sidePane = document.getElementById('sidepane');
-  sidePane.className = 'expanded';
+  sidePaneDom.className = 'expanded';
   hideSidePaneElements();
 }
 
-function condenseSidePane() {
-  var sidePane = document.getElementById('sidepane');
-  sidePane.className = 'condensed';
-  hideSidePaneElements();
+function condenseSidePane(ev) {
+  ev.stopPropagation();
+  ev.preventDefault();
+  sidePaneDom.className = 'condensed';
 }
 
 function hideSidePaneElements() {
-  document.getElementById('library-pane').style.display = 'none';
-  document.getElementById('upload-pane').style.display = 'none';
-  document.getElementById('playlists-pane').style.display = 'none';
-  document.getElementById('events-pane').style.display = 'none';
-  document.getElementById('settings-pane').style.display = 'none';
+  for (var name in panes) {
+    panes[name].pane.style.display = 'none';
+  }
 }
 
 function onAddToPlaylistListClick(ev) {
@@ -2993,7 +2970,6 @@ function setServerVol(ev) {
   volNumDom.textContent = Math.round(val * 100);
   volWarningDom.style.display = (val > 1) ? "" : "none";
 }
-
 
 function setUpNowPlayingUi() {
   nowPlayingToggleDom.addEventListener('click', onNowPlayingToggleMouseDown, false);
@@ -3477,7 +3453,7 @@ function renderUnseenChatCount() {
   var eventsTabText = (player.unseenChatCount > 0) ?
     ("Chat (" + player.unseenChatCount + ")") : "Chat";
   // TODO (mel): make this work with new panes (3)
-  // tabs.events.tab.textContent = eventsTabText;
+  // panes.events.tab.textContent = eventsTabText;
   updateTitle();
 }
 
@@ -4004,27 +3980,6 @@ function toPlaylistId(s) {
 }
 
 function resizeDomElements() {
-  // var eventsScrollTop = eventsListDom.scrollTop;
-
-  // nowPlayingDom.style.width = (window.innerWidth - MARGIN * 2) + "px";
-  // var secondLayerTop = nowPlayingDom.getBoundingClientRect().top + nowPlayingDom.clientHeight + MARGIN;
-  // leftWindowDom.style.left = MARGIN + "px";
-  // leftWindowDom.style.top = secondLayerTop + "px";
-  // var queueWindowLeft = MARGIN + leftWindowDom.clientWidth + MARGIN;
-  // queueWindowDom.style.left = queueWindowLeft + "px";
-  // queueWindowDom.style.top = secondLayerTop + "px";
-  // queueWindowDom.style.width = (window.innerWidth - queueWindowLeft - MARGIN) + "px";
-  // leftWindowDom.style.height = (window.innerHeight - secondLayerTop) + "px";
-  // queueWindowDom.style.height = (leftWindowDom.clientHeight - MARGIN) + "px";
-  // var tabContentsHeight = leftWindowDom.clientHeight - tabsDom.clientHeight - MARGIN;
-  // libraryDom.style.height = (tabContentsHeight - libHeaderDom.clientHeight) + "px";
-  // uploadDom.style.height = tabContentsHeight + "px";
-  // eventsListDom.style.height = (tabContentsHeight - eventsOnlineUsersDom.clientHeight - chatBoxDom.clientHeight) + "px";
-  // playlistsDom.style.height = (tabContentsHeight - newPlaylistNameDom.offsetHeight) + "px";
-
-  // setAllTabsHeight(tabContentsHeight);
-  // queueItemsDom.style.height = (queueWindowDom.clientHeight - queueHeaderDom.offsetTop - queueHeaderDom.clientHeight) + "px";
-
   if (eventsListScrolledToBottom) {
     scrollEventsToBottom();
   }
@@ -4033,13 +3988,6 @@ function resizeDomElements() {
 function refreshPage() {
   location.href = location.protocol + "//" + location.host + "/";
 }
-
-// function setAllTabsHeight(h) {
-//   for (var name in tabs) {
-//     var tab = tabs[name];
-//     tab.pane.style.height = h + "px";
-//   }
-// }
 
 function getStreamerCount() {
   var count = player.streamers;
@@ -4226,9 +4174,9 @@ function init() {
   });
   player.on('events', function() {
     // TODO (mel): make this work with new panes
-    // if (activeTab === tabs.events && isBrowserTabActive) {
-    //   player.markAllEventsSeen();
-    // }
+    if (activePane === panes.events && isBrowserTabActive) {
+      player.markAllEventsSeen();
+    }
     renderEvents();
   });
   player.on('currentTrack', updateStreamPlayer);
@@ -4251,10 +4199,10 @@ function init() {
 function onWindowFocus() {
   isBrowserTabActive = true;
   // TODO (mel): make this work with new panes (2)
-  // if (activeTab === tabs.events) {
-  //   player.markAllEventsSeen();
-  //   renderUnseenChatCount();
-  // }
+  if (activePane === panes.events) {
+    player.markAllEventsSeen();
+    renderUnseenChatCount();
+  }
 }
 
 function onWindowBlur() {
