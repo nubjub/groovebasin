@@ -182,7 +182,7 @@ a:hover,a:active,a:focus
           float left
     #events-list
       font-size 0.9em
-      height calc(100% - 85px)
+      height calc(100% - 63px)
       overflow-y scroll
       padding 4px 5px 5px 5px
       .name
@@ -207,7 +207,8 @@ a:hover,a:active,a:focus
       .chat
         background-color lightGray
     #chat-box-input
-      width 94%
+      outline 0
+      width 95%
   #settings-pane
     #auth-username, #auth-password
       width 300px
@@ -395,8 +396,9 @@ button:hover .icon
   z-index 2
 
 #modal
-  z-index 3
+  outline 0
   position fixed
+  z-index 3
 
 #modal-header
   background #0b3e6f
@@ -623,7 +625,6 @@ button:hover .icon
   dl
     font-size 17px
     margin-bottom 4px
-
     dt
       font-family monospace
       display inline
@@ -633,17 +634,12 @@ button:hover .icon
       font-size 14px
       text-shadow 1px 1px 0 #000000
       border-radius 4px
-
       em
         font-weight normal
         color #afafaf
         text-shadow none
-
     dd
       display inline
-
-#edit-tags
-  font-size 21px
 
 #main-err-msg
   border 1px solid #cd0a0a
@@ -709,18 +705,16 @@ button:hover .icon
   overflow-y auto
 
 #edit-tags
+  font-size 21px
   div
     margin-bottom 6px
-
   .field
-    width 177px
-    display block
-    float left
-    text-align right
+    display inline-block
     padding-right 6px
-
-  input[type='text']
-    width 400px
+    text-align right
+    width 23%
+  input
+    width 70%
 
 #add-to-playlist-list li, #add-to-playlist-new
   font-size 16px
