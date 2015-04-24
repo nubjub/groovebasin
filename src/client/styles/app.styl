@@ -247,16 +247,12 @@ a:hover,a:active,a:focus
   > *
     width auto
   #nowplaying
-    background-color #498FB3
+    background-color #A9C4DB
     padding 5px 10px
     h1
       font-size 16px
       letter-spacing 0.1em
       font-weight bold
-    #nowplaying-album-art
-      float left
-      max-height 200px
-      width auto
     .song-info
       display block
       overflow hidden
@@ -282,6 +278,8 @@ a:hover,a:active,a:focus
           display inline-block
           vertical-align top
           width 49.5%
+        .primary > *
+          display inline
       .playback-btns
         display block
         margin-top 15px
@@ -308,7 +306,7 @@ a:hover,a:active,a:focus
     color rgba(255, 255, 255, 0.75)
     position relative
   #queue-window
-      background-color rgb(10, 61, 110)
+      background-color #17609D
       bottom 4px
       height calc(100% - 249px)
       position relative
@@ -350,7 +348,7 @@ input[type=range]
   height 14px
   border-radius 4px
   border 1px solid #000
-  background #282828 url("img/bright-10.png") left no-repeat
+  background #1F5876 url("img/bright-10.png") left no-repeat
   background-size 0% 100%
   &::-moz-range-track
     border none
@@ -582,6 +580,10 @@ button:hover .icon
     overflow-y hidden
     float left
     margin-right 4px
+  #queue-header
+    background-color rgb(31, 88, 118)
+    margin-top -4px
+    padding 2px 0 1px
   #queue-items
     clear both
     height 100%
@@ -590,24 +592,28 @@ button:hover .icon
     user-select none
     width 100%
     div
+      border-bottom 1px solid rgba(114, 122, 134, 0.35)
+      cursor default
       clear both
+      height 1.2em
       overflow-x hidden
       overflow-y hidden
-      height 1.2em
-      cursor default
+      padding-top 2px
     div:nth-child(2n+1)
-      background-color #2A2A2A
+      background-color #4181B6
     div.random
       color #96B7EB
     div.old
-      color #555555
+      color rgba(37, 56, 77, 0.56)
+      font-style italic
     div.selected
       selected-div()
     div.current
       border 1px solid #096AC8
-      background-color lightGray
+      background-color rgba(255, 255, 255, 0.63)
+      color #1D4D7A
       font-weight bold
-      color #75abff
+      text-shadow 1px 1px 1px rgba(0,0,0,0.1)
     div.cursor
       span
         text-decoration underline
