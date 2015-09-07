@@ -642,7 +642,10 @@ var mainErrMsgTextDom = document.getElementById('main-err-msg-text');
 var playlistsListDom = document.getElementById('playlists-list');
 var playlistsDom = document.getElementById('playlists');
 var uploadDom = document.getElementById('upload');
-var trackDisplayDom = document.getElementById('track-display');
+var trackDisplayTitleDom = document.getElementById('track-display-title');
+var trackDisplaySubTitleDom = document.getElementById('track-display-subtitle');
+var waveformDom = document.getElementById('waveform');
+var waveformInnerDom = document.getElementById('waveform-inner');
 var libHeaderDom = document.getElementById('lib-window-header');
 var queueHeaderDom = document.getElementById('queue-header');
 var autoQueueUploadsDom = document.getElementById('auto-queue-uploads');
@@ -1374,6 +1377,7 @@ var menuPermSelectors = {
 };
 
 var addToPlaylistDialogFilteredList = [];
+var currentWaveformArray = null;
 
 init();
 
@@ -1924,6 +1928,24 @@ function renderVolumeSlider() {
   volWarningDom.style.display = (player.volume > 1) ? "" : "none";
 }
 
+function getNowPlayingTitle(track) {
+  if (!track) {
+    return "(Deleted Track)";
+  }
+  return track.name;
+}
+
+function getNowPlayingSubTitle(track) {
+  if (!track) {
+    return "(Deleted Track)";
+  }
+  var str = track.artistName;
+  if (track.albumName) {
+    str += " - " + track.albumName;
+  }
+  return str;
+}
+
 function getNowPlayingText(track) {
   if (!track) {
     return "(Deleted Track)";
@@ -1935,6 +1957,50 @@ function getNowPlayingText(track) {
   return str;
 }
 
+var renderCanvas = document.createElement('canvas');
+function renderWaveform(track) {
+  renderCanvas.width = track.waveform.length;
+  renderCanvas.height = 256;
+
+  var context = renderCanvas.getContext('2d');
+  var imageData = context.createImageData(renderCanvas.width, renderCanvas.height);
+  var colorRed = 0;
+  var colorGreen = 171;
+  var colorBlue = 255;
+  var colorAlpha = 100;
+  for (var x = 0; x < track.waveform.length; x += 1) {
+    var yMax = 255 - track.waveform[x];
+    for (var y = yMax; y < imageData.height; y += 1) {
+      imageData.data[y * imageData.width * 4 + x * 4 + 0] = colorRed;
+      imageData.data[y * imageData.width * 4 + x * 4 + 1] = colorGreen;
+      imageData.data[y * imageData.width * 4 + x * 4 + 2] = colorBlue;
+      imageData.data[y * imageData.width * 4 + x * 4 + 3] = colorAlpha;
+    }
+  }
+
+  context.putImageData(imageData, 0, 0);
+
+  waveformDom.style.backgroundImage = "url(" + renderCanvas.toDataURL() + ")";
+}
+
+function updateWaveform(track) {
+  if (track && track.waveform) {
+    if (currentWaveformArray != null &&
+        compareArrays(currentWaveformArray, track.waveform) === 0)
+    {
+      return;
+    }
+    currentWaveformArray = track.waveform;
+
+    renderWaveform(track);
+    waveformDom.style.visibility = "visible";
+  } else {
+    if (!currentWaveformArray) return;
+    currentWaveformArray = null;
+    waveformDom.style.visibility = "hidden";
+  }
+}
+
 function renderNowPlaying() {
   var track = null;
   if (player.currentItem != null) {
@@ -1942,10 +2008,14 @@ function renderNowPlaying() {
   }
 
   updateTitle();
+
+  updateWaveform(track);
   if (track) {
-    trackDisplayDom.textContent = getNowPlayingText(track);
+    trackDisplayTitleDom.textContent = getNowPlayingTitle(track);
+    trackDisplaySubTitleDom.textContent = getNowPlayingSubTitle(track);
   } else {
-    trackDisplayDom.innerHTML = "&nbsp;";
+    trackDisplayTitleDom.innerHTML = "&nbsp;";
+    trackDisplaySubTitleDom.innerHTML = "&nbsp;";
   }
   var oldClass = (player.isPlaying === true) ? 'icon-play' : 'icon-pause';
   var newClass = (player.isPlaying === true) ? 'icon-pause': 'icon-play';
@@ -2865,6 +2935,7 @@ function setUpEditTagsUi() {
 function updateSliderUi() {
   var percent = parseFloat(trackSliderDom.value) * 100;
   trackSliderDom.style.backgroundSize = percent + "% 100%";
+  waveformInnerDom.style.width = percent + "%";
 }
 
 function onNowPlayingToggleMouseDown(ev) {
@@ -4185,7 +4256,10 @@ function init() {
   player.on('importProgress', renderImportProgress);
   player.on('libraryupdate', triggerRenderLibrary);
   player.on('queueUpdate', triggerRenderQueue);
-  player.on('scanningUpdate', triggerRenderQueue);
+  player.on('scanningUpdate', function() {
+    triggerRenderQueue();
+    updateWaveform();
+  });
   player.on('playlistsUpdate', triggerPlaylistsUpdate);
   player.on('volumeUpdate', renderVolumeSlider);
   player.on('statusupdate', function(){
