@@ -2968,6 +2968,7 @@ function onNowPlayingStopMouseDown(ev) {
 }
 
 function onTrackSliderMouseDown(ev) {
+  if (ev.button !== 0) return;
   ev.preventDefault();
   ev.stopPropagation();
   userIsSeeking = true;
@@ -2994,6 +2995,7 @@ function onTrackSliderMouseDown(ev) {
   }
 
   function onTrackSliderMouseUp(ev) {
+    if (ev.button !== 0) return;
     ev.preventDefault();
     ev.stopPropagation();
     seekSliderValue = getSeekPercent(ev);
